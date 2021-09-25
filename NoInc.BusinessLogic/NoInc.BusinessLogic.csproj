@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NoInc.BusinessLogic.Models\NoInc.BusinessLogic.Models.csproj" />
+    <ProjectReference Include="..\NoInc.DataAccess.Models\NoInc.DataAccess.Models.csproj" />
+    <ProjectReference Include="..\NoInc.DataAccess\NoInc.DataAccess.csproj" />
+    <ProjectReference Include="..\NoInc.Enums\NoInc.Enums.csproj" />
+  </ItemGroup>
+
+</Project>
