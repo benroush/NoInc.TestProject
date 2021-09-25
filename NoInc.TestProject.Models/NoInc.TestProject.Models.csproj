@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NoInc.DataAccess.Models\NoInc.DataAccess.Models.csproj" />
+    <ProjectReference Include="..\NoInc.Enums\NoInc.Enums.csproj" />
+  </ItemGroup>
+
+</Project>

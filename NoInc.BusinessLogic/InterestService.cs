@@ -22,6 +22,11 @@ namespace NoInc.BusinessLogic
         public Interest Get(int id)
         {
             var interestEntity = _interestDataAccess.Get(id);
+            if (interestEntity == null)
+            {
+                return null;
+            }
+
             var mappedInterest = _mapper.Map(interestEntity, new Interest());
             return mappedInterest;
         }

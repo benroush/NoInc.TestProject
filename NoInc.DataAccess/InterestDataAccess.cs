@@ -16,7 +16,7 @@ namespace NoInc.DataAccess
             _dbContext = dbContext;
         }
 
-        public InterestEntity Get(int id) => _dbContext.Interests.First(interest => interest.Id == id);
+        public InterestEntity Get(int id) => _dbContext.Interests.FirstOrDefault(interest => interest.Id == id);
 
         public IQueryable<InterestEntity> Get() => _dbContext.Interests;
 

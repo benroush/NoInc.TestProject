@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\NoInc.BusinessLogic\NoInc.BusinessLogic.csproj" />
     <ProjectReference Include="..\NoInc.DataAccess\NoInc.DataAccess.csproj" />
+    <ProjectReference Include="..\NoInc.TestProject.Models\NoInc.TestProject.Models.csproj" />
   </ItemGroup>
 
 </Project>

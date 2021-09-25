@@ -1,19 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using NoInc.BusinessLogic.Interfaces;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using NoInc.BusinessLogic.Models;
+using NoInc.TestProject.Models.Requests;
 
 namespace NoInc.TestProject.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class InterestsController : ControllerBase
+    public class InterestController : ControllerBase
     {
         private readonly IInterestService _interestService;
+        private readonly IMapper _mapper;
 
-        public InterestsController(IInterestService interestService)
+        public InterestController(IInterestService interestService, IMapper mapper)
         {
             _interestService = interestService;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -23,33 +26,36 @@ namespace NoInc.TestProject.Controllers
             return Ok(interests);
         }
 
-        // GET api/<InterestsController>/5
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
             var interest = _interestService.Get(id);
+            if (interest == null)
+            {
+                return NotFound($"No Interest exists with an id of {id}");
+            }
+
             return Ok(interest);
         }
 
-        // POST api/<InterestsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post(CreateInterestRequest request)
         {
+            var interest = _mapper.Map(request, new Interest());
+            _interestService.Save(interest);
         }
 
-        // PUT api/<InterestsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id)
         {
         }
 
-        // DELETE api/<InterestsController>/5
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
             //TODO check if record exists, tell user no delete happened if it doesn't
             _interestService.Delete(id);
-            return Ok($"Deleted Interest with ID {id}");
+            return Ok($"Deleted Interest with id {id}");
         }
     }
 }
