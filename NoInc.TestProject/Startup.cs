@@ -27,9 +27,11 @@ namespace NoInc.TestProject
         {
             services.AddControllers();
             services.AddScoped<IInterestDataAccess, InterestDataAccess>();
+            services.AddScoped<ISkillDataAccess, SkillDataAccess>();
             services.AddScoped<IInterestService, InterestService>();
-            services.AddAutoMapper(typeof(BusinessLogic.MappingProfiles.InterestProfile), typeof(MappingProfiles.InterestProfile));
-            services.AddDbContext<NoIncContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NoIncNetWorthDatabase")));
+            services.AddScoped<ISkillService, SkillService>();
+            services.AddAutoMapper(typeof(BusinessLogic.MappingProfiles.InterestProfile), typeof(BusinessLogic.MappingProfiles.SkillProfile), typeof(MappingProfiles.InterestProfile), typeof(MappingProfiles.SkillProfile));
+            services.AddDbContext<NoIncContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NoIncDatabase")));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "NoInc.TestProject", Version = "v1" });

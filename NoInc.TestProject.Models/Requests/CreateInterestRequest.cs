@@ -1,6 +1,4 @@
-﻿using NoInc.Enums;
-using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace NoInc.TestProject.Models.Requests
@@ -13,9 +11,9 @@ namespace NoInc.TestProject.Models.Requests
         public string Name { get; set; }
 
         [Required]
-        [Range((int)InterestType.Sport, (int)InterestType.Game)]
+        [RegularExpression("Sport|Game", ErrorMessage = "Value must be either 'Sport' or 'Game'")]
         [Description("Is the interest a Sport or a Game")]
-        public InterestType Type { get; set; }
+        public string Type { get; set; }
 
         [Required]
         [Description("Is the interest current?")]
@@ -23,7 +21,7 @@ namespace NoInc.TestProject.Models.Requests
 
         [Required]
         [StringLength(150, ErrorMessage = "Detail cannot exceed 150 characters.")]
-        [Description("Name of the interest")]
+        [Description("Description of the interest")]
         public string Detail { get; set; }
     }
 }
