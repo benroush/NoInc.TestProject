@@ -6,7 +6,7 @@ namespace NoInc.DataAccess.Interfaces
     public interface IInterestDataAccess
     {
         InterestEntity Get(int id);
-        IQueryable<InterestEntity> GetAll();
+        IQueryable<InterestEntity> Get();
         void Save(InterestEntity interest);
         void Delete(int id);
     }

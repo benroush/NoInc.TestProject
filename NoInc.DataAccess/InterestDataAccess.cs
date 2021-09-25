@@ -2,7 +2,6 @@
 using NoInc.DataAccess.DatabaseContext;
 using NoInc.DataAccess.Interfaces;
 using NoInc.DataAccess.Models;
-using NoInc.Enums;
 using System;
 using System.Linq;
 
@@ -19,9 +18,7 @@ namespace NoInc.DataAccess
 
         public InterestEntity Get(int id) => _dbContext.Interests.First(interest => interest.Id == id);
 
-        public IQueryable<InterestEntity> GetAll() => _dbContext.Interests;
-
-        public IQueryable<InterestEntity> GetAll(InterestType type) => _dbContext.Interests.Where(interest => interest.Type == type.ToString());
+        public IQueryable<InterestEntity> Get() => _dbContext.Interests;
 
         public void Save(InterestEntity interest)
         {

@@ -6,7 +6,7 @@ namespace NoInc.BusinessLogic.Interfaces
     public interface IInterestService
     {
         Interest Get(int id);
-        List<Interest> GetAll();
+        IEnumerable<Interest> Get();
         void Save(Interest interest);
         void Delete(int id);
     }

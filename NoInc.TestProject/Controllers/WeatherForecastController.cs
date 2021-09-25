@@ -33,7 +33,7 @@ namespace NoInc.TestProject.Controllers
             var rng = new Random();
             var car = new Interest("Soccer", Enums.InterestType.Sport, true, "Soccer is a Sport and Sports are cool");
             _interestService.Save(car);
-            var lar = _interestService.GetAll();
+            var lar = _interestService.Get();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),

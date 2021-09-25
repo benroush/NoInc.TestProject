@@ -26,9 +26,9 @@ namespace NoInc.BusinessLogic
             return mappedInterest;
         }
 
-        public List<Interest> GetAll()
+        public IEnumerable<Interest> Get()
         {
-            var allInterestEntities = _interestDataAccess.GetAll().ToList();
+            var allInterestEntities = _interestDataAccess.Get().ToList();
             var mappedInterests = _mapper.Map(allInterestEntities, new List<Interest>());
             return mappedInterests;
         }
