@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.OpenApi.Models;
 using NoInc.BusinessLogic;
 using NoInc.BusinessLogic.Interfaces;
@@ -39,6 +40,15 @@ namespace NoInc.TestProject
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "NoInc.TestProject", Version = "v1" });
             });
+            services.AddMvc();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    p => p.AllowAnyOrigin().
+                        AllowAnyHeader().
+                        AllowAnyMethod()
+                        );
+            });
             services.AddAuthentication("BasicAuthentication").
             AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>
             ("BasicAuthentication", null);
@@ -68,6 +78,8 @@ namespace NoInc.TestProject
             {
                 endpoints.MapControllers();
             });
+
+            app.UseCors("AllowAll");
         }
     }
 }

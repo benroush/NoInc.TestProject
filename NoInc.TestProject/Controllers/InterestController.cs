@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using NoInc.BusinessLogic.Interfaces;
 using NoInc.BusinessLogic.Models;
 using NoInc.TestProject.Models.Requests;
+using NoInc.TestProject.Models.Responses;
+using System.Collections.Generic;
 
 namespace NoInc.TestProject.Controllers
 {
@@ -25,7 +27,8 @@ namespace NoInc.TestProject.Controllers
         public ActionResult Get()
         {
             var interests = _interestService.Get();
-            return Ok(interests);
+            var mappedInterests = _mapper.Map(interests, new List<GetInterestResponse>());
+            return Ok(mappedInterests);
         }
 
         [HttpGet("{id}")]
@@ -37,7 +40,8 @@ namespace NoInc.TestProject.Controllers
                 return NotFound($"No Interest exists with an id of {id}");
             }
 
-            return Ok(interest);
+            var mappedInterest = _mapper.Map(interest, new GetInterestResponse());
+            return Ok(mappedInterest);
         }
 
         [HttpPost]
@@ -47,15 +51,9 @@ namespace NoInc.TestProject.Controllers
             _interestService.Save(interest);
         }
 
-        [HttpPut("{id}")]
-        public void Put(int id)
-        {
-        }
-
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            //TODO check if record exists, tell user no delete happened if it doesn't
             _interestService.Delete(id);
             return Ok($"Deleted Interest with id {id}");
         }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NoInc.BusinessLogic.Interfaces;
 using NoInc.BusinessLogic.Models;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 
 namespace NoInc.TestProject.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class SkillController : ControllerBase
@@ -47,11 +49,6 @@ namespace NoInc.TestProject.Controllers
         {
             var skill = _mapper.Map(request, new Skill());
             _skillService.Save(skill);
-        }
-
-        [HttpPut("{id}")]
-        public void Put(int id)
-        {
         }
 
         [HttpDelete("{id}")]

@@ -9,7 +9,8 @@ namespace NoInc.TestProject.MappingProfiles
     {
         public InterestProfile()
         {
-            CreateMap<BusinessLogic.Models.Interest, GetInterestResponse>();
+            CreateMap<BusinessLogic.Models.Interest, GetInterestResponse>()
+                .ConvertUsing(source => new GetInterestResponse(source.Id, source.Name, source.Type, source.IsCurrent, source.Detail));
 
             CreateMap<CreateInterestRequest, BusinessLogic.Models.Interest>()
                 .ConvertUsing(source => new BusinessLogic.Models.Interest(source.Name, (Enums.InterestType)Enum.Parse(typeof(Enums.InterestType), source.Type), source.IsCurrent, source.Detail));

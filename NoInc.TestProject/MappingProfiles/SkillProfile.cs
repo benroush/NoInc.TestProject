@@ -9,7 +9,8 @@ namespace NoInc.TestProject.MappingProfiles
     {
         public SkillProfile()
         {
-            CreateMap<BusinessLogic.Models.Skill, GetSkillResponse>();
+            CreateMap<BusinessLogic.Models.Skill, GetSkillResponse>()
+                .ConvertUsing(source => new GetSkillResponse(source.Id, source.Name, source.Type, source.DateLearned, source.Detail));
 
             CreateMap<CreateSkillRequest, BusinessLogic.Models.Skill>()
                 .ConvertUsing(source => new BusinessLogic.Models.Skill(source.Name, (Enums.SkillType)Enum.Parse(typeof(Enums.SkillType), source.Type), source.DateLearned, source.Detail));
