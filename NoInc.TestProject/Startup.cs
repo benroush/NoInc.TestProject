@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.OpenApi.Models;
 using NoInc.BusinessLogic;
 using NoInc.BusinessLogic.Interfaces;
@@ -30,7 +28,7 @@ namespace NoInc.TestProject
             services.AddControllers();
             services.AddScoped<IInterestDataAccess, InterestDataAccess>();
             services.AddScoped<ISkillDataAccess, SkillDataAccess>();
-            services.AddScoped<IUserDataAccess, UserDataAccess> ();
+            services.AddScoped<IUserDataAccess, UserDataAccess>();
             services.AddScoped<IInterestService, InterestService>();
             services.AddScoped<ISkillService, SkillService>();
             services.AddScoped<IUserService, UserService>();
@@ -57,19 +55,9 @@ namespace NoInc.TestProject
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                //app.UseExceptionHandler("/error-local-development");
-                //app.UseExceptionHandler("/error");
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NoInc.TestProject v1"));
-            }
-            else
-            {
-                app.UseExceptionHandler("/error");
-            }
-
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NoInc.TestProject v1"));
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
