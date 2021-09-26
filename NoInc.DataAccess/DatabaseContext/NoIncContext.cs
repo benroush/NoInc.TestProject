@@ -16,6 +16,8 @@ namespace NoInc.DataAccess.DatabaseContext
 
         public virtual DbSet<InterestEntity> Interests { get; set; }
         public virtual DbSet<SkillEntity> Skills { get; set; }
+        public virtual DbSet<UserEntity> Users { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -63,6 +65,19 @@ namespace NoInc.DataAccess.DatabaseContext
                     .IsUnicode(false);
 
                 entity.Property(e => e.Type)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<UserEntity>(entity =>
+            {
+                entity.Property(e => e.Password)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UserName)
                     .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false);

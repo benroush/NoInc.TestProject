@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NoInc.BusinessLogic.Interfaces;
 using NoInc.BusinessLogic.Models;
@@ -6,6 +7,7 @@ using NoInc.TestProject.Models.Requests;
 
 namespace NoInc.TestProject.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class InterestController : ControllerBase
