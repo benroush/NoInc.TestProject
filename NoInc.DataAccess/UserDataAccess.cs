@@ -16,6 +16,6 @@ namespace NoInc.DataAccess
             _dbContext = dbContext;
         }
 
-        public async Task<UserEntity> Authenticate(string username, string password) => await _dbContext.Users.Where(user => user.UserName == username && user.Password == password).FirstOrDefaultAsync();
+        public async Task<UserEntity> Get(string username, string password) => await _dbContext.Users.Where(user => user.UserName == username && user.Password == password).FirstOrDefaultAsync();
     }
 }

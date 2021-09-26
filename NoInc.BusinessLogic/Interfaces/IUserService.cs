@@ -1,10 +1,10 @@
-﻿using NoInc.DataAccess.Models;
+﻿using NoInc.BusinessLogic.Models;
 using System.Threading.Tasks;
 
 namespace NoInc.BusinessLogic.Interfaces
 {
     public interface IUserService
     {
-        Task<UserEntity> Authenticate(string username, string password);
+        Task<User> Get(string username, string password);
     }
 }

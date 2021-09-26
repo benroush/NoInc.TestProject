@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NoInc.BusinessLogic.Interfaces;
-using NoInc.DataAccess.Models;
+using NoInc.BusinessLogic.Models;
 using System;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
@@ -30,18 +30,18 @@ namespace NoInc.TestProject
 
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
-            UserEntity user;
+            User user;
 
             try
             {
                 var credentials = GetCredentialsFromHeader();
                 var username = credentials[0];
                 var password = credentials[1];
-                user = await _userService.Authenticate(username, password);
+                user = await _userService.Get(username, password);
             }
             catch
             {
-                return AuthenticateResult.Fail("Error Occured.Authorization failed.");
+                return AuthenticateResult.Fail("Invalid Credentials");
             }
 
             if (user == null)

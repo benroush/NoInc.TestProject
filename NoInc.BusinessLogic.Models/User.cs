@@ -1,6 +1,6 @@
-﻿namespace NoInc.DataAccess.Models
+﻿namespace NoInc.BusinessLogic.Models
 {
-    public partial class UserEntity
+    public class User
     {
         public int Id { get; set; }
         public string UserName { get; set; }

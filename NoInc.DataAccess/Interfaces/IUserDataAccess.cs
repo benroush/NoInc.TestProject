@@ -5,6 +5,6 @@ namespace NoInc.DataAccess.Interfaces
 {
     public interface IUserDataAccess
     {
-        Task<UserEntity> Authenticate(string username, string password);
+        Task<UserEntity> Get(string username, string password);
     }
 }
